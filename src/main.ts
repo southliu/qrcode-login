@@ -7,6 +7,15 @@ async function bootstrap() {
 
   app.useStaticAssets('static', { prefix: '/pages' });
 
+  app.enableCors();
+
+  // app.use({
+  //   cors: {
+  //     origin: 'http://172.30.80.1:3000',
+  //     credentials: true,
+  //   },
+  // });
+
   await app.listen(3000);
 }
 bootstrap();

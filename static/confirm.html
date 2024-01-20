@@ -36,12 +36,13 @@
 
     <script>
         const params = new URLSearchParams(window.location.search.slice(1));
+        const LOCALHOST = '172.30.80.1';
 
         const id = params.get('id');
 
         let token = '';
         document.getElementById('dong').addEventListener('click', () => {
-            axios.get('http://192.168.31.56:3000/login', {
+            axios.get(`http://${LOCALHOST}:3000/login`, {
                 params: {
                     username: 'dong',
                     password: '111'
@@ -52,7 +53,7 @@
         });
 
         document.getElementById('guang').addEventListener('click', () => {
-            axios.get('http://192.168.31.56:3000/login', {
+            axios.get(`http://${LOCALHOST}:3000/login`, {
                 params: {
                     username: 'guang',
                     password: '222'
@@ -62,12 +63,12 @@
             });
         });
 
-        axios.get('http://192.168.31.56:3000/qrcode/scan?id=' + id).catch(e => {
+        axios.get(`http://${LOCALHOST}:3000/qrcode/scan?id=` + id).catch(e => {
             alert('二维码已过期');
         });
         
         document.getElementById('confirm').addEventListener('click', () => {
-            axios.get('http://192.168.31.56:3000/qrcode/confirm?id=' + id, {
+            axios.get(`http://${LOCALHOST}:3000/qrcode/confirm?id=` + id, {
                 headers: {
                     authorization: 'Bearer ' + token
                 }
@@ -77,7 +78,7 @@
         });
 
         document.getElementById('cancel').addEventListener('click', () => {
-            axios.get('http://192.168.31.56:3000/qrcode/cancel?id=' + id).catch(e => {
+            axios.get(`http://${LOCALHOST}:3000/qrcode/cancel?id=` + id).catch(e => {
                 alert('二维码已过期');
             });
         });

@@ -11,6 +11,7 @@ import { AppService } from './app.service';
 import { randomUUID } from 'crypto';
 import * as qrcode from 'qrcode';
 import { JwtService } from '@nestjs/jwt';
+import { LOCALHOST } from './config';
 
 interface QrCodeInfo {
   status:
@@ -80,7 +81,7 @@ export class AppController {
   @Get('qrcode/generate')
   async generate() {
     const uuid = randomUUID();
-    const url = `http://localhost:3000/pages/confrim.html?id=${uuid}`;
+    const url = `http://${LOCALHOST}:3000/pages/confirm.html?id=${uuid}`;
     const dataUrl = await qrcode.toDataURL(url);
 
     map.set(`qrcode_${uuid}`, {
